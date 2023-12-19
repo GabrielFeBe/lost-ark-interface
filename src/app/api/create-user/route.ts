@@ -1,18 +1,18 @@
 import { NextResponse, NextRequest } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../../prisma";
 
-const prisma = new PrismaClient();
 
 export async function POST(req :NextRequest,res :NextResponse) {
 
 const body = await req.json()
-const {discordId, email, password} = body;
+const {discordId, email, password , pointsCap} = body;
 try {
   const newUser = await prisma.user.create({
     data: {
       email,
       password,
-      discordId
+      discordId,
+      pointsCap
     }
   })
   return NextResponse.json({message: "User created successfully", user: newUser})
