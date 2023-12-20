@@ -6,7 +6,6 @@ export default async function Register() {
 	const data = await res.json();
 	console.log(data);
 
-
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
 			<RegisterUser />  
