@@ -19,5 +19,19 @@ try {
 } catch (error) {
   return NextResponse.error()
 }
-
 }
+
+export async function GET(req:Request,) {
+  try {
+    
+    const users = await prisma.user.findMany({
+      orderBy:{
+        pointsCap: 'desc'
+      }
+    })
+    return NextResponse.json({message: "Users found successfully", users })
+  } catch (error) {
+    return NextResponse.error()
+  }
+
+ }

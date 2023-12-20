@@ -1,12 +1,14 @@
-import Login from '@/components/Login';
 import React from 'react';
+import Dashboard from '@/components/Dashboard';
 
 export default async function Home() {
+	
 
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<Login/>
+      DASHBOARD
+			<Dashboard/>
 		</main>
 	);
 }

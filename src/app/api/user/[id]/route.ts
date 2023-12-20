@@ -18,6 +18,21 @@ export async function PATCH(req:Request, context:any ) {
   } catch (error) {
     return NextResponse.error()
   }
+}
 
-
+export async function GET(req:Request, context:any ) {
+  // params
+  const {id} = context.params;
+  if(Number(id) === 0 || !isNaN(Number(id))) return NextResponse.error()
+  try {
+    
+    const user = await prisma.user.findUnique({
+      where: {
+        id: Number(id)
+      }
+    })
+    return NextResponse.json({message: "User found successfully", user })
+  } catch (error) {
+    return NextResponse.error()
+  }
 }
