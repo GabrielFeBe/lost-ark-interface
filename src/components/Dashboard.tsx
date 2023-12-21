@@ -1,5 +1,8 @@
 import React from 'react';
 import { getUser } from '@/utils/auth';
+import IChar from '@/types/IChar';
+import EditOrShowChar from './EditOrShowChar';
+import AddNewCharacter from './AddNewCharacter';
 
 
 export default async function Dashboard() {
@@ -10,16 +13,12 @@ export default async function Dashboard() {
 	const characters = data.characters || [];
 	return (
 		<div>
-			{ characters.map((character: any) => {
+			<AddNewCharacter/>
+			{ characters.map((character: IChar) => {
 				return ( 
-					<h1 key={1}>
-            Here will be a comp that allows editing of the character
-					</h1>
-
+					<EditOrShowChar char={character} key={character.id}/>
 				);
-
 			})}
-
 		</div>
 	);
 }
