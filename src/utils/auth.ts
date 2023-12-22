@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
 
-interface User {
+export interface User {
   id: number
   email: string
   discordId: string

@@ -13,7 +13,7 @@ export default async function Dashboard() {
 	const characters = data.characters || [];
 	return (
 		<div>
-			<AddNewCharacter/>
+			<AddNewCharacter user={user} />
 			{ characters.map((character: IChar) => {
 				return ( 
 					<EditOrShowChar char={character} key={character.id}/>
