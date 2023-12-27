@@ -27,7 +27,7 @@ export default function EditOrShowChar({ char} : Props) {
 		return (
 			<form action="">
 				<p>{character?.name}</p>
-				<p>{character?.dateOfMine.toDateString()}</p>
+				<p>{dayjs(character?.dateOfMine).tz('America/Sao_Paulo').format('ddd, MMM D, YYYY h:mm A')}</p>
 				<input type="number"  />
 				<button onClick={() => {
 					// const date = new Date();
@@ -44,7 +44,7 @@ export default function EditOrShowChar({ char} : Props) {
 	return (
 		<div>
 			<p>{character?.name}</p>
-			<p>{character?.dateOfMine.toDateString()}</p>
+			<p>{dayjs(character?.dateOfMine).tz('America/Sao_Paulo').format('ddd, MMM D, YYYY h:mm A')}</p>
 			<button onClick={() => {
 				setEditing(true);
 			}}>Edit</button>

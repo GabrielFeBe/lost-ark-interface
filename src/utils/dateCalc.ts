@@ -5,7 +5,7 @@ import timezone from 'dayjs/plugin/timezone';
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-function calculateTime
+export function calculateTime
 (initialValue:number,
 	periodicPointsIncrease:number, 
 	targetValue:number, 
@@ -21,6 +21,6 @@ export function handleDate(pointsCap:number,currentPoints:number) {
 	const date = new Date();
 	date.setTime(date.getTime() + milisecondsToAdd);
 	// change timezone to BRST
-	const dateOfMine = dayjs(date).tz('America/Sao_Paulo').format();
+	const dateOfMine = dayjs(date).tz('America/Sao_Paulo').format('YYYY-MM-DDTHH:mm:ssZ');
 	return dateOfMine;
 }

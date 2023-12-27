@@ -10,7 +10,7 @@ export interface User {
 export function getUser() {
 	const token = cookies().get('token')?.value;
 	if (!token) {
-		throw new Error('Unaunthenticated');
+		return null;
 	}
 	const user: User = jwt.decode(token) as User;
 
