@@ -5,7 +5,7 @@ import { opcoes , chaveSecreta } from '@/utils/jwt';
 
 export async function POST(req:Request,) { 
 	const body = await req.json();
-	const {email, password} = body;
+	const {email, pass} = body;
 	try {
 		const user = await prisma.user.findUnique({ 
 			where: {
@@ -13,14 +13,9 @@ export async function POST(req:Request,) {
 			}
 		});
 		if(!user) return NextResponse.error();
-		console.log(user);
-		if(user.password !== password) return NextResponse.error();
-		const payload = {
-			id: user.id,
-			email: user.email,
-			discordId: user.discordId,
-			pointsCap: user.pointsCap
-		};
+		if(user.password !== pass) return NextResponse.error();
+		const { password , ...payload} = user;
+		console.log(password);
 		const token = jwt.sign(payload, chaveSecreta, opcoes);
 		const cookieExpirationInSecods = 60 * 60 * 24; // 1 day
 		const redirectUrl = new URL('/dashboard', req.url);
