@@ -16,7 +16,7 @@ export default async function Dashboard() {
 			<AddNewCharacter user={user} />
 			{ characters.map((character: IChar) => {
 				return ( 
-					<EditOrShowChar char={character} key={character.id}/>
+					<EditOrShowChar char={character} key={character.id} user={user}/>
 				);
 			})}
 		</div>

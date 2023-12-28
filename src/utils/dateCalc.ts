@@ -21,6 +21,5 @@ export function handleDate(pointsCap:number,currentPoints:number) {
 	const date = new Date();
 	date.setTime(date.getTime() + milisecondsToAdd);
 	// change timezone to BRST
-	const dateOfMine = dayjs(date).tz('America/Sao_Paulo').format('YYYY-MM-DDTHH:mm:ssZ');
-	return dateOfMine;
+	return date;
 }
