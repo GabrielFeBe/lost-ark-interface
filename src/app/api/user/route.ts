@@ -5,14 +5,10 @@ import prisma from '../../../../prisma';
 export async function POST(req :NextRequest) {
 
 	const body = await req.json();
-	const {discordId, email, password , pointsCap} = body;
 	try {
 		const newUser = await prisma.user.create({
 			data: {
-				email,
-				password,
-				discordId,
-				pointsCap
+				...body
 			}
 		});
 		return NextResponse.json({message: 'User created successfully', user: newUser});
@@ -26,7 +22,7 @@ export async function GET() {
     
 		const users = await prisma.user.findMany({
 			orderBy:{
-				pointsCap: 'desc'
+				id: 'desc',
 			}
 		});
 		return NextResponse.json({message: 'Users found successfully', users });
