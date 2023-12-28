@@ -13,6 +13,7 @@ export async function POST(req:Request,) {
 			}
 		});
 		if(!user) return NextResponse.error();
+		console.log(user);
 		if(user.password !== password) return NextResponse.error();
 		const payload = {
 			id: user.id,
