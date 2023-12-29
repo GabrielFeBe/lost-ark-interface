@@ -7,6 +7,7 @@ import timezone from 'dayjs/plugin/timezone';
 import { handleDate, calculateTime } from '@/utils/dateCalc';
 import { User } from '@/utils/auth';
 import { miningSchedule } from '@/utils/miningSchedule';
+import api from '@/utils/api';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -36,13 +37,7 @@ export default function EditOrShowChar({ char, user} : Props) {
 			userId: user.discordId,
 			messageContent: `You can mine ${user.pointsCap} points again!,Char name ${char.name} , date of the request: ${dayjs(currDate).format('DD/MM/YYYY HH:mm') }`,
 		};
-		const res = await fetch(`http://localhost:3000/api/char/${character?.id}`, {
-			method: 'PATCH',
-			body: JSON.stringify(formatingObj),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		});
+		const res = await api.patch(`/char/${character?.id}`, formatingObj);
 		await miningSchedule(scheduleBody);
 		// const json = await res.json();
 		console.log(res);

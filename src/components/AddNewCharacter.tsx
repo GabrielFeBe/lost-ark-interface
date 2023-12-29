@@ -6,6 +6,7 @@ import timezone from 'dayjs/plugin/timezone';
 import { handleDate, calculateTime } from '@/utils/dateCalc';
 import { User } from '@/utils/auth';
 import { miningSchedule } from '@/utils/miningSchedule';
+import api from '@/utils/api';
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -31,13 +32,7 @@ export default function AddNewCharacter( {user} : Props) {
 			points,
 			userId: +user.id,
 		};  
-		await fetch('http://localhost:3000/api/char', {
-			method: 'POST',
-			body: JSON.stringify(body),
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		});
+		await api.post('/char', body);
 		const scheduleBody = {
 			miliseconds: calculateTime(+points, 30, +user.pointsCap),
 			userId: user.discordId,

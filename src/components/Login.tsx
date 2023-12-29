@@ -1,6 +1,8 @@
 'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import api from '@/utils/api';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
@@ -10,16 +12,9 @@ export default function Login () {
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		try {
-			const dataRes = await fetch('http://localhost:3000/api/login', {
-				method: 'POST',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-			if (dataRes.status === 200) {
-				router.push(dataRes.url);
-			}
+			const dataRes = await api.post('/login', data);
+			console.log(dataRes);
+			router.push('/dashboard');
 		} catch (error) {
 			setLoginError(true);
 			console.log(error);
@@ -48,6 +43,7 @@ export default function Login () {
 				/>
 			</label>
 			<button className='bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] h-[45px] text-center hover:bg-slate-200 transition-all duration-300'>Login</button>
+			<Link href={'/register'} className='bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] h-[45px] text-center hover:bg-slate-200 transition-all duration-300'>Register</Link>
 		</form>
 	);
 }

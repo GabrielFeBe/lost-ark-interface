@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import api from '@/utils/api';
 
 export default function RegisterUser() {
 	const router = useRouter();
@@ -9,16 +10,9 @@ export default function RegisterUser() {
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		const formatingObj = {...data , pointsCap: Number(data.pointsCap)};
-		const res = await fetch('http://localhost:3000/api/user', {
-			method: 'POST',
-			body: JSON.stringify(formatingObj),
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		});
-		const json = await res.json();
+		const res = await api.post('/user', formatingObj);
 		router.push('/login');
-		console.log(json);
+		console.log(res);
 	}
 	return (
 		<form action="" 

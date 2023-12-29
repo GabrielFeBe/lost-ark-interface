@@ -3,13 +3,18 @@ import { getUser } from '@/utils/auth';
 import IChar from '@/types/IChar';
 import EditOrShowChar from './EditOrShowChar';
 import AddNewCharacter from './AddNewCharacter';
+import api from '@/utils/api';
 
+interface data  {
+	char: IChar[]
+	message:string
+}
 
 export default async function Dashboard() {
 	const user = getUser();
 	if(!user) return null;
-	const dashboardData = await fetch(`http://localhost:3000/api/char/${user.id}`);
-	const data = await dashboardData.json();
+	const data: data = await api.get(`/char/${user.id}`);
+	
 	const characters = data.char || [];
 	return (
 		<div>
