@@ -28,7 +28,6 @@ export async function PATCH(req:Request, context:Context ) {
 export async function GET(req:Request, context:Context ) {
 	// params
 	const {id} = context.params;
-	if(Number(id) === 0 || !isNaN(Number(id))) return NextResponse.error();
 	try {
     
 		const user = await prisma.user.findUnique({
