@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
-	const router = useRouter();
+	// const router = useRouter();
 	async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
