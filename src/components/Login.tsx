@@ -14,6 +14,7 @@ export default function Login () {
 		const data = Object.fromEntries(formData);
 		try {
 			const dataRes = await api.post('/login', data);
+			console.log(dataRes);
 			Cookies.set('token', dataRes.data.token, { expires: dataRes.data.cookieExpirationInDays });
 			router.push(dataRes.data.redirectUrl);
 		} catch (error) {
