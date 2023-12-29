@@ -18,9 +18,10 @@ export default function Login () {
 					'Content-Type': 'application/json'
 				}
 			});
-			if (dataRes.status !== 200) {
-				throw new Error('Error');
-			}
+			console.log(dataRes);
+			// if (dataRes.status !== 200) {
+			// 	throw new Error('Error');
+			// }
 			// json
 			const json = await dataRes.json();
 			console.log(json);
