@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import api from '@/utils/api';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
@@ -12,9 +11,16 @@ export default function Login () {
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		try {
-			const dataRes = await api.post('/login', data);
-			console.log(dataRes);
-			router.push('/dashboard');
+			const dataRes = await fetch('https://lainterface.vercel.app/api/login', {
+				method: 'POST',
+				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json'
+				}
+			});
+			if (dataRes.status === 200) {
+				router.push(dataRes.url);
+			}
 		} catch (error) {
 			setLoginError(true);
 			console.log(error);
