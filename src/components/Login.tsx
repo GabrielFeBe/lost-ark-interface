@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import api from '@/utils/api';
+import Cookies from 'js-cookie';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
@@ -12,15 +12,23 @@ export default function Login () {
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		console.log(data);
-		try {
-			const res = await api.post('/login', formData);
-			console.log(res);
-			router.refresh();
-		}
-		catch (error) {
+		const res = await fetch('https://lainterface.vercel.app/api/login', {
+			method:'POST',
+			headers: {
+				'Content-Type': 'application/json'
+				// Adicione outros cabeçalhos conforme necessário
+			},
+			body: JSON.stringify(data)
+		});
+		if(res.status !== 200) {
 			setLoginError(true);
-			console.log(error);
+			return;
 		}
+		const json = await res.json();
+		console.log(json);
+		Cookies.set('token', json.token, {expires: json.cookiesExpiresInDays});
+		router.push(json.redirectUrl);
+		
 	}
 	if(loginError) {
 		// for now i'll do this, but i'll make a better error handling system later
