@@ -13,9 +13,9 @@ export default function Login () {
 		const data = Object.fromEntries(formData);
 		console.log(data);
 		try {
-			const users = await api.get('/user');
-			console.log(users);
-			router.push('/');
+			const res = await api.post('/login', formData);
+			console.log(res);
+			router.refresh();
 		}
 		catch (error) {
 			setLoginError(true);
