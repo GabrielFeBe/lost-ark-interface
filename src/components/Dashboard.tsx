@@ -6,16 +6,20 @@ import AddNewCharacter from './AddNewCharacter';
 import api from '@/utils/api';
 
 interface data  {
-	char: IChar[]
-	message:string
+	data : {
+
+		char: IChar[]
+		message:string
+	}
 }
 
 export default async function Dashboard() {
 	const user = getUser();
 	if(!user) return null;
 	const data: data = await api.get(`/char/${user.id}`);
+	console.log(data);
 	
-	const characters = data.char || [];
+	const characters = data.data.char || [];
 	return (
 		<div>
 			<AddNewCharacter user={user} />
