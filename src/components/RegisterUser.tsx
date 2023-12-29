@@ -11,7 +11,7 @@ export default function RegisterUser() {
 		const data = Object.fromEntries(formData);
 		const formatingObj = {...data , pointsCap: Number(data.pointsCap)};
 		const res = await api.post('/user', formatingObj);
-		router.push('/login');
+		router.push('/');
 		console.log(res);
 	}
 	return (

@@ -17,13 +17,9 @@ export async function POST(req:Request,) {
 		const { password , ...payload} = user;
 		console.log(password);
 		const token = jwt.sign(payload, chaveSecreta, opcoes);
-		const cookieExpirationInSecods = 60 * 60 * 24; // 1 day
+		const cookieExpirationInDays = 1; // 1 day
 		const redirectUrl = new URL('/dashboard', req.url);
-		return NextResponse.redirect(redirectUrl, {
-			headers: {
-				'Set-Cookie': `token=${token};max-age=${cookieExpirationInSecods};path=/;`
-			}
-		});
+		return NextResponse.json({message: 'User found successfully', redirectUrl, token, cookieExpirationInSecods: cookieExpirationInDays});
 
 	} catch(err) {
 		return NextResponse.error();
