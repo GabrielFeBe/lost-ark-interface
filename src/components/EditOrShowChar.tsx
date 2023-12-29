@@ -38,6 +38,7 @@ export default function EditOrShowChar({ char, user} : Props) {
 			messageContent: `You can mine ${user.pointsCap} points again!,Char name ${char.name} , date of the request: ${dayjs(currDate).format('DD/MM/YYYY HH:mm') }`,
 		};
 		const res = await api.patch(`/char/${character?.id}`, formatingObj);
+
 		await miningSchedule(scheduleBody);
 		// const json = await res.json();
 		console.log(res);
