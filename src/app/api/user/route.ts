@@ -27,13 +27,6 @@ export async function GET() {
 		const users = await prisma.user.findMany({
 			orderBy:{
 				pointsCap: 'desc'
-			},
-			select:{
-				id: true,
-				email: true,
-				discordId: true,
-				pointsCap: true,
-				password:false,
 			}
 		});
 		return NextResponse.json({message: 'Users found successfully', users });

@@ -1,32 +1,23 @@
 'use client';
 import React, { useState } from 'react';
-// import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import api from '@/utils/api';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
-	// const router = useRouter();
+	const router = useRouter();
 	async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
+		console.log(data);
 		try {
-			const dataRes = await fetch('https://lainterface.vercel.app/api/login', {
-				method: 'POST',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-			console.log(dataRes);
-			// if (dataRes.status !== 200) {
-			// 	throw new Error('Error');
-			// }
-			// json
-			const json = await dataRes.json();
-			console.log(json);
-
-		} catch (error) {
+			const users = await api.get('/user');
+			console.log(users);
+			router.push('/');
+		}
+		catch (error) {
 			setLoginError(true);
 			console.log(error);
 		}
