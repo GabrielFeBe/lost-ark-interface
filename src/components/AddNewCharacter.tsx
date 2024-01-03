@@ -46,7 +46,9 @@ export default function AddNewCharacter( {user} : Props) {
 			<button onClick={() => {	
 				setIsCreating(!isCreating);
 			}}>{isCreating ? 'Close' : 'Create'}</button>
-			{isCreating && <form action="" onSubmit={handleSubmit}>
+			{isCreating && <form 
+				className='transition-all duration-1000'
+				action="" onSubmit={handleSubmit}>
 				Char Name
 				<input className='text-black' type="text" placeholder='name' name='name'/>
 				Points

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Verifica se está em produção
-const isProduction = process.env.NODE_ENV === 'production';
+export const isProduction = process.env.NODE_ENV === 'production';
 
 // Define a baseURL com base no ambiente
 const baseURL = isProduction

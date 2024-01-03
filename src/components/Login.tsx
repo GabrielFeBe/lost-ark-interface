@@ -3,16 +3,18 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import { isProduction } from '@/utils/api';
 
 export default function Login () {
 	const [loginError, setLoginError] = useState(false);
 	const router = useRouter();
+	const loginUrl = isProduction ? 'https://lainterface.vercel.app/api/login' : 'http://localhost:3000/api/login';
 	async function handleSubmit (e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		console.log(data);
-		const res = await fetch('https://lainterface.vercel.app/api/login', {
+		const res = await fetch(loginUrl, {
 			method:'POST',
 			headers: {
 				'Content-Type': 'application/json'
