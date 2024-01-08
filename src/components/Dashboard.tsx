@@ -20,7 +20,7 @@ export default async function Dashboard() {
 	const characters = data.data.char || [];
 	return (
 		<div className='min-h-screen w-full flex flex-col justify-center items-center gap-[20px]'>
-			<section className='h-[50px] w-full transition-all duration-1000'>
+			<section className='h-[50px] w-full transition-all duration-1000 flex items-center justify-center gap-5'>
 
 				<AddNewCharacter user={user} />
 			</section>

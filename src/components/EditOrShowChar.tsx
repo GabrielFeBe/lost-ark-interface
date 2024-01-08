@@ -4,9 +4,9 @@ import React, { useState, useEffect} from 'react';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
-import { handleDate, calculateTime } from '@/utils/dateCalc';
+import { handleDate } from '@/utils/dateCalc';
 import { User } from '@/utils/auth';
-import { miningSchedule } from '@/utils/miningSchedule';
+// import { miningSchedule } from '@/utils/miningSchedule';
 import api from '@/utils/api';
 
 dayjs.extend(utc);
@@ -27,20 +27,20 @@ export default function EditOrShowChar({ char, user} : Props) {
 
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-		const date = new Date();
-		const currDate = dayjs(date).tz('America/Sao_Paulo').format();
+		// const date = new Date();
+		// const currDate = dayjs(date).tz('America/Sao_Paulo').format();
 		const formData = new FormData(e.currentTarget);
 		const data = Object.fromEntries(formData);
 		const formatingObj = { dateOfMine: handleDate(+user.pointsCap, +data.points)};
-		const scheduleBody = {
-			miliseconds: calculateTime(+data.points, 30, +user.pointsCap),
-			userId: user.discordId,
-			messageContent: `You can mine ${user.pointsCap} points again!,Char name ${char.name} , date of the request: ${dayjs(currDate).format('DD/MM/YYYY HH:mm') }`,
-		};
+		// The Lines 30, 31, 36, 37, 38, 39, 40, and 43 are disabled because even if the bot is ready i don't have a place to host it.
+		// const scheduleBody = {
+		// 	miliseconds: calculateTime(+data.points, 30, +user.pointsCap),
+		// 	userId: user.discordId,
+		// 	messageContent: `You can mine ${user.pointsCap} points again!,Char name ${char.name} , date of the request: ${dayjs(currDate).format('DD/MM/YYYY HH:mm') }`,
+		// };
 		const res = await api.patch(`/char/${character?.id}`, formatingObj);
 
-		await miningSchedule(scheduleBody);
-		// const json = await res.json();
+		// await miningSchedule(scheduleBody);
 		console.log(res);
 		setEditing(!editing);
 		window.location.reload();
