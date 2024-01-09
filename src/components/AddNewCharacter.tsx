@@ -43,17 +43,27 @@ export default function AddNewCharacter( {user} : Props) {
 		window.location.reload();
 	}
 	return (
-		<>
-			<button onClick={() => {	
-				setIsCreating(!isCreating);
-			}}>{isCreating ? 'Close' : 'Create'}</button>
+		<section  className={`p-3 border-white border-[1px] rounded-md ${ isCreating ? 'h-[100px]' : 'h-[50px]'  }w-full  flex flex-col items-center justify-center gap-5 `}>
+			<button 
+				className='bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] h-[45px] text-center hover:bg-slate-200 transition-all duration-300'
+				onClick={() => {	
+					setIsCreating(!isCreating);
+				}}>{isCreating ? 'Close' : 'Create'}</button>
 			{ <form 
 				className={`transition-all duration-1000 flex gap-5 ${isCreating ? 'h-full' : 'h-[0] opacity-0'}`}
 				action="" onSubmit={handleSubmit}>
-				<input className='text-black' type="text" placeholder='name' name='name' />
-				<input className='text-black' type="number" name='points' />
-				<button className='flex h-full'>Create</button>
+				{isCreating && 'Name'}
+				<input className='text-black h-[40px] rounded-md' type="text" placeholder='name' name='name' />
+				{isCreating && 'Points'}
+				<input 
+					className='text-black h-[40px] rounded-md'
+					type="number" 
+					name='points' 
+				/>
+				<button
+					className='bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] h-[45px] text-center hover:bg-slate-200 transition-all duration-300'
+				>Create</button>
 			</form>}
-		</>
+		</section>
 	);
 }

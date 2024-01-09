@@ -19,16 +19,22 @@ export default async function Dashboard() {
 	
 	const characters = data.data.char || [];
 	return (
-		<div className='min-h-screen w-full flex flex-col justify-center items-center gap-[20px]'>
-			<section className='h-[50px] w-full transition-all duration-1000 flex items-center justify-center gap-5'>
+		<div className='min-h-screen w-full flex flex-col justify-center items-center gap-[20px] transition-all duration-1000'>
+			
 
-				<AddNewCharacter user={user} />
-			</section>
-			{ characters.map((character: IChar) => {
-				return ( 
-					<EditOrShowChar char={character} key={character.id} user={user}/>
-				);
-			})}
+			<AddNewCharacter user={user} />
+			
+			<table className='transition-all duration-1000'>
+				<tr className='text-white'>
+					<th>Name</th>
+					<th>Mining Date</th>
+				</tr>
+				{ characters.map((character: IChar) => {
+					return ( 
+						<EditOrShowChar char={character} key={character.id} user={user}/>
+					);
+				})}
+			</table>
 		</div>
 	);
 }

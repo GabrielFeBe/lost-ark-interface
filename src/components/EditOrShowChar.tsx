@@ -61,15 +61,16 @@ export default function EditOrShowChar({ char, user} : Props) {
 	}
   
 	return (
-		<div>
-			<p>{character?.name}</p>
-			<div>
-			</div>
-			<p>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</p>
-			<button onClick={() => {
+		<>
+			<tr>
+				<td>{character?.name}</td>
+			
+				<td>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</td>
+		
+			</tr>
+			<div>	<button onClick={() => {
 				setEditing(true);
-			}}>Edit</button>
-		</div>
-
+			}}>Edit</button></div>
+		</>
 	);
 }
