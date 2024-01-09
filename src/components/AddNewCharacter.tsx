@@ -50,7 +50,7 @@ export default function AddNewCharacter( {user} : Props) {
 					setIsCreating(!isCreating);
 				}}>{isCreating ? 'Close' : 'Create'}</button>
 			{ <form 
-				className={`transition-all duration-1000 flex gap-5 ${isCreating ? 'h-full' : 'h-[0] opacity-0'}`}
+				className={`transition-all duration-1000 flex gap-5 ${isCreating ? 'h-[50px]' : 'h-[0] opacity-0'}`}
 				action="" onSubmit={handleSubmit}>
 				{isCreating && 'Name'}
 				<input className={`transition-all duration-1000 text-black ${ isCreating ?'h-[40px]' : 'h-[0px]'} rounded-md`} type="text" placeholder='name' name='name' />

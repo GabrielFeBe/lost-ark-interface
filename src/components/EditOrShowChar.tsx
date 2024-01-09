@@ -49,18 +49,18 @@ export default function EditOrShowChar({ char, user} : Props) {
 
   
 	return (
-		<tr>
-			<td className='w-[100px]'>{character?.name}</td>
+		<tr className='border-[white] border-[1px]'>
+			<td className='p-2 w-[100px]'>{character?.name}</td>
 			
-			<td className='w-[250px]'>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</td>
+			<td className='p-2 w-[250px]'>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</td>
 		
-			<td>
+			<td className='p-2 w-[200px] flex items-center justify-center gap-1'>
 				
 				<div className='flex gap-[5px]'>
 					<form action="" onSubmit={handleSubmit} className={`${editing ? 'w-full' : 'w-[0px]'}  flex transition-all duration-1000`}>
-						<input type="number" name='points' className={`${editing ? 'w-full' : 'w-[0px]'} text-black w-[100px] rounded-md transition-all duration-1000`}/>
+						<input type="number" name='points' className={`${editing ? 'w-[100px]' : 'w-[0px]'} text-black  rounded-md transition-all duration-1000`}/>
 						<button 
-							className={`bg-white text-black  rounded-md text-[18px leading-5]  ${ editing ? 'w-[40px]' : 'w-[0px]' } text-center hover:bg-slate-200 transition-all duration-1000`}
+							className={`ml-1 bg-white text-black  rounded-md text-[18px leading-5]  ${ editing ? 'w-[40px]' : 'w-[0px]' } text-center hover:bg-slate-200 transition-all duration-1000`}
 
 						>Save</button>
 					

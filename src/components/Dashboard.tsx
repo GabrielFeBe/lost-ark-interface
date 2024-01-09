@@ -26,9 +26,9 @@ export default async function Dashboard() {
 			
 			<table className='transition-all duration-1000'>
 				<tr className='text-white'>
-					<th>Name</th>
-					<th>Mining Date</th>
-					<th>Edit</th>
+					<th className='border-[1px] border-[white] p-2 bg-[#2E3035]'>Name</th>
+					<th className='border-[1px] border-[white] p-2 bg-[#2E3035]'>Mining Date</th>
+					<th className='border-[1px] border-[white] p-2 bg-[#2E3035]'>Edit</th>
 				</tr>
 				{ characters.map((character: IChar) => {
 					return ( 
