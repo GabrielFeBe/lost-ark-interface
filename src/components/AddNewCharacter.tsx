@@ -53,15 +53,15 @@ export default function AddNewCharacter( {user} : Props) {
 				className={`transition-all duration-1000 flex gap-5 ${isCreating ? 'h-full' : 'h-[0] opacity-0'}`}
 				action="" onSubmit={handleSubmit}>
 				{isCreating && 'Name'}
-				<input className='text-black h-[40px] rounded-md' type="text" placeholder='name' name='name' />
+				<input className={`transition-all duration-1000 text-black ${ isCreating ?'h-[40px]' : 'h-[0px]'} rounded-md`} type="text" placeholder='name' name='name' />
 				{isCreating && 'Points'}
 				<input 
-					className='text-black h-[40px] rounded-md'
+					className={`transition-all duration-1000 text-black  ${ isCreating ?'h-[40px]' : 'h-[0px]'} rounded-md`}
 					type="number" 
 					name='points' 
 				/>
 				<button
-					className='bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] h-[45px] text-center hover:bg-slate-200 transition-all duration-300'
+					className={`bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] ${ isCreating ? 'h-[45px]' : 'h-0' } text-center hover:bg-slate-200 transition-all duration-1000`}
 				>Create</button>
 			</form>}
 		</section>

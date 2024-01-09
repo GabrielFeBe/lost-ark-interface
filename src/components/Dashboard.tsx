@@ -28,6 +28,7 @@ export default async function Dashboard() {
 				<tr className='text-white'>
 					<th>Name</th>
 					<th>Mining Date</th>
+					<th>Edit</th>
 				</tr>
 				{ characters.map((character: IChar) => {
 					return ( 

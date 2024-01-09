@@ -46,31 +46,33 @@ export default function EditOrShowChar({ char, user} : Props) {
 		window.location.reload();
 	}
 
-	if(editing) {
-		return (
-			<form action="" onSubmit={handleSubmit}>
-				<p>{character?.name}</p>
-				<p>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</p>
-				<input type="number" name='points' className='text-black'/>
-				<button >Save</button>
-				<button onClick={() => {
-					setEditing(!editing);
-				}}>Close</button>
-			</form>
-		);
-	}
+
   
 	return (
-		<>
-			<tr>
-				<td>{character?.name}</td>
+		<tr>
+			<td className='w-[100px]'>{character?.name}</td>
 			
-				<td>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</td>
+			<td className='w-[250px]'>{dayjs(character?.dateOfMine).format('ddd, MMM D, YYYY h:mm A')}</td>
 		
-			</tr>
-			<div>	<button onClick={() => {
-				setEditing(true);
-			}}>Edit</button></div>
-		</>
+			<td>
+				
+				<div className='flex gap-[5px]'>
+					<form action="" onSubmit={handleSubmit} className={`${editing ? 'w-full' : 'w-[0px]'}  flex transition-all duration-1000`}>
+						<input type="number" name='points' className={`${editing ? 'w-full' : 'w-[0px]'} text-black w-[100px] rounded-md transition-all duration-1000`}/>
+						<button 
+							className={`bg-white text-black  rounded-md text-[18px leading-5]  ${ editing ? 'w-[40px]' : 'w-[0px]' } text-center hover:bg-slate-200 transition-all duration-1000`}
+
+						>Save</button>
+					
+					</form>
+					<button onClick={() => {
+						setEditing(!editing);
+					}}>{ editing ? 'Close' : 'Edit'}</button>
+				</div>
+			
+				
+			</td>
+		</tr>
+
 	);
 }
