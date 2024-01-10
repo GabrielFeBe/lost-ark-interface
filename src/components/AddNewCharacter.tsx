@@ -16,6 +16,7 @@ interface Props {
 }
 export default function AddNewCharacter( {user} : Props) {
 	const [isCreating, setIsCreating] = useState<boolean>(false);
+	const [isMakingApiCall, setIsMakingApiCall] = useState<boolean>(false);
 	async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 		// const date = new Date();
@@ -31,7 +32,8 @@ export default function AddNewCharacter( {user} : Props) {
 			dateOfMine: handleDate(+user.pointsCap, +points),
 			points,
 			userId: +user.id,
-		};  
+		};
+		setIsMakingApiCall(true);
 		await api.post('/char', body);
 		// The lines 21, 22, 36, 37, 38, 39, 40, 41 and 43 are disabled because even if the bot is ready i don't have a place to host it.
 		// const scheduleBody = {
@@ -61,6 +63,7 @@ export default function AddNewCharacter( {user} : Props) {
 					name='points' 
 				/>
 				<button
+					disabled={isMakingApiCall}
 					className={`bg-white text-black p-2 rounded-md text-[18px leading-5] w-[200px] ${ isCreating ? 'h-[45px]' : 'h-0' } text-center hover:bg-slate-200 transition-all duration-1000`}
 				>Create</button>
 			</form>}
