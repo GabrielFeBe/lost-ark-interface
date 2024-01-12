@@ -10,9 +10,7 @@ interface Context  {
 export async function PATCH(req:Request, context:Context ) {
 	// params
 	const {id} = context.params;
-	console.log(id);
 	const body = await req.json();
-	
 	try {
 
 		const updateChar = await prisma.character.update({
